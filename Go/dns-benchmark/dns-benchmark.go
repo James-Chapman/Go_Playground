@@ -35,7 +35,7 @@ func get(key string) []int64 {
 	return lookuptimes[key]
 }
 
-func Append(server string, time int64) {
+func appendx(server string, time int64) {
 	rwm.Lock()
 	defer rwm.Unlock()
 	lookuptimes[server] = append(lookuptimes[server], time)
@@ -53,7 +53,7 @@ func lookupname(target string, server string, wg *sync.WaitGroup) {
 	}
 
 	totaltime += t.Nanoseconds()
-	Append(server, int64(t))
+	appendx(server, int64(t))
 	//log.Printf("Took %v", t)
 	if len(r.Answer) == 0 {
 		log.Println("No results for " + target)
@@ -111,7 +111,7 @@ func main() {
 	resultLine := ""
 
 	for s := 0; s < len(servers); s++ {
-		times := lookuptimes[servers[s]]
+		times := get(servers[s])
 		var total int64
 		var biggest int64
 		var smallest int64
