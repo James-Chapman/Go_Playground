@@ -1,4 +1,4 @@
-package algorithms
+package sort
 
 // Runs MergeSort algorithm on a slice single
 func MergeSort(slice []int) []int {

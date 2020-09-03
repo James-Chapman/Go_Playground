@@ -1,4 +1,4 @@
-package algorithms
+package sort
 
 // InsertionSort is InsertionSort without the need for a temporary variable
 func InsertionSort(arr []int) {
